@@ -181,14 +181,17 @@ def home():
 # Health Check
 # -----------------------------
 
+# @app.route("/health")
+# def health():
+#     return jsonify({
+#         "status": "healthy",
+#         "application": "BudgetGuard",
+#         "version": VERSION
+#     }), 200
+#  Testing the deployment failure for v1.1.0
 @app.route("/health")
 def health():
-    return jsonify({
-        "status": "healthy",
-        "application": "BudgetGuard",
-        "version": VERSION
-    }), 200
-
+    raise RuntimeError("Intentional v1.1.0 deployment failure")
 
 # -----------------------------
 # Budget API

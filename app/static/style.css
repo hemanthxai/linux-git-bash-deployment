@@ -1,0 +1,525 @@
+:root {
+    --bg: #090b10;
+    --surface: #10131a;
+    --surface-2: #151922;
+    --border: #252a35;
+    --text: #f4f6f8;
+    --muted: #8d95a5;
+    --green: #35d07f;
+    --blue: #4f8cff;
+    --yellow: #f5b942;
+    --red: #ff5c69;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 0%,
+            rgba(79, 140, 255, 0.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(53, 208, 127, 0.06),
+            transparent 25%
+        ),
+        var(--bg);
+
+    color: var(--text);
+}
+
+
+/* -----------------------------
+   MAIN CONTAINER
+----------------------------- */
+
+.container {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 42px 0 60px;
+}
+
+
+/* -----------------------------
+   HEADER
+----------------------------- */
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+}
+
+header p {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.version {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+
+    padding: 7px 12px;
+    border-radius: 6px;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* -----------------------------
+   ALERT
+----------------------------- */
+
+.alert {
+    border: 1px solid rgba(53, 208, 127, 0.25);
+    background: rgba(53, 208, 127, 0.06);
+
+    padding: 16px 18px;
+    border-radius: 8px;
+
+    margin-bottom: 24px;
+
+    font-size: 14px;
+    color: #b9f4d3;
+}
+
+.alert.warning {
+    border-color: rgba(245, 185, 66, 0.35);
+    background: rgba(245, 185, 66, 0.07);
+    color: #ffd98a;
+}
+
+.alert.critical {
+    border-color: rgba(255, 92, 105, 0.35);
+    background: rgba(255, 92, 105, 0.07);
+    color: #ff9ba4;
+}
+
+.alert.danger {
+    border-color: rgba(255, 60, 70, 0.5);
+    background: rgba(255, 60, 70, 0.12);
+    color: #ff858e;
+}
+
+
+/* -----------------------------
+   STAT CARDS
+----------------------------- */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+
+    background: var(--border);
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    margin-bottom: 24px;
+}
+
+.card {
+    background: var(--surface);
+    padding: 23px;
+}
+
+.card:hover {
+    background: var(--surface-2);
+}
+
+.card h3 {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+
+    margin-bottom: 12px;
+}
+
+.value {
+    font-size: 25px;
+    font-weight: 650;
+    letter-spacing: -0.5px;
+}
+
+
+/* -----------------------------
+   DASHBOARD PANEL
+----------------------------- */
+
+.dashboard {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    padding: 26px;
+    margin-bottom: 24px;
+}
+
+.progress-section {
+    margin-bottom: 25px;
+}
+
+.progress-section:last-child {
+    margin-bottom: 0;
+}
+
+.progress-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.progress-header strong {
+    color: var(--text);
+    font-size: 14px;
+}
+
+.progress {
+    height: 7px;
+
+    background: #222731;
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+
+    background: var(--green);
+    border-radius: 20px;
+
+    transition:
+        width 0.5s ease,
+        background 0.3s ease;
+}
+
+.progress-bar.month {
+    background: var(--blue);
+}
+
+
+/* -----------------------------
+   ANALYSIS
+----------------------------- */
+
+.analysis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 1px;
+
+    background: var(--border);
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    margin-bottom: 24px;
+}
+
+.analysis > div {
+    background: var(--surface);
+    padding: 21px;
+}
+
+.analysis > div:hover {
+    background: var(--surface-2);
+}
+
+.analysis h3 {
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    margin-bottom: 9px;
+}
+
+.analysis p {
+    font-size: 19px;
+    font-weight: 650;
+}
+
+
+/* -----------------------------
+   SECTIONS
+----------------------------- */
+
+.form-section,
+.expenses {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    padding: 26px;
+    margin-bottom: 24px;
+}
+
+.form-section h2,
+.expenses h2 {
+    font-size: 17px;
+    font-weight: 600;
+
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* -----------------------------
+   FORMS
+----------------------------- */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        2fr
+        auto;
+
+    gap: 12px;
+}
+
+input,
+select {
+    width: 100%;
+
+    padding: 12px 13px;
+
+    background: #0c0f15;
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 6px;
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+input::placeholder {
+    color: #606878;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 2px rgba(79, 140, 255, 0.1);
+}
+
+select {
+    cursor: pointer;
+}
+
+
+/* -----------------------------
+   BUTTON
+----------------------------- */
+
+button {
+    border: 1px solid #3c79e6;
+
+    background: var(--blue);
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.1s;
+}
+
+button:hover {
+    background: #3979eb;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+
+/* -----------------------------
+   TABLE
+----------------------------- */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    color: #737c8d;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+
+    text-align: left;
+
+    padding: 12px 10px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 14px 10px;
+
+    color: #d9dde5;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid #1c2029;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: rgba(255, 255, 255, 0.015);
+}
+
+
+/* -----------------------------
+   FOOTER
+----------------------------- */
+
+footer {
+    text-align: center;
+
+    color: #596171;
+
+    font-size: 12px;
+
+    padding-top: 8px;
+}
+
+
+/* -----------------------------
+   RESPONSIVE
+----------------------------- */
+
+@media (max-width: 900px) {
+
+    .cards,
+    .analysis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+        padding-top: 25px;
+    }
+
+    header {
+        align-items: flex-start;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .cards,
+    .analysis {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard,
+    .form-section,
+    .expenses {
+        padding: 20px;
+    }
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(79, 140, 255, 0.12);
+    border: 1px solid rgba(79, 140, 255, 0.25);
+
+    border-radius: 8px;
+
+    color: #6ea0ff;
+
+    font-size: 20px;
+    font-weight: 700;
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>BudgetGuard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <div>
+
+            <div class="brand">
+    <div class="brand-icon">₹</div>
+
+    <div>
+        <h1>BudgetGuard</h1>
+        <p>Personal Budget & Savings Tracker</p>
+    </div>
+</div>
+
+        </div>
+
+        <div class="version">
+            v{{ version }}
+        </div>
+
+    </header>
+
+
+    <!-- Alert -->
+
+    <div
+        id="alertBox"
+        class="alert"
+    >
+        Loading...
+    </div>
+
+
+    <!-- Main Statistics -->
+
+    <section class="cards">
+
+        <div class="card">
+
+            <h3>Monthly Income</h3>
+
+            <div
+                id="income"
+                class="value"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Savings Goal</h3>
+
+            <div
+                id="savingsGoal"
+                class="value"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Spending Limit</h3>
+
+            <div
+                id="spendingLimit"
+                class="value"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>Total Spent</h3>
+
+            <div
+                id="totalSpent"
+                class="value"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Progress -->
+
+    <section class="dashboard">
+
+        <div class="progress-section">
+
+            <div class="progress-header">
+
+                <span>Budget Used</span>
+
+                <strong id="budgetPercent">
+                    0%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="budgetProgress"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="progress-section">
+
+            <div class="progress-header">
+
+                <span>Month Progress</span>
+
+                <strong id="monthPercent">
+                    0%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="monthProgress"
+                    class="progress-bar month"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Analysis -->
+
+    <section class="analysis">
+
+        <div>
+
+            <h3>Remaining Budget</h3>
+
+            <p id="remaining">
+                ₹0
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Expected Spending</h3>
+
+            <p id="expected">
+                ₹0
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Projected Monthly Spending</h3>
+
+            <p id="projectedSpending">
+                ₹0
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Projected Savings</h3>
+
+            <p id="projectedSavings">
+                ₹0
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Add Expense -->
+
+    <section class="form-section">
+
+        <h2>Add Daily Expense</h2>
+
+        <form id="expenseForm">
+
+            <div class="form-grid">
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Amount ₹"
+                    min="1"
+                    step="0.01"
+                    required
+                >
+
+                <select id="category">
+
+                    <option value="Food">
+                        Food
+                    </option>
+
+                    <option value="Transport">
+                        Transport
+                    </option>
+
+                    <option value="Shopping">
+                        Shopping
+                    </option>
+
+                    <option value="Entertainment">
+                        Entertainment
+                    </option>
+
+                    <option value="Bills">
+                        Bills
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Description"
+                    required
+                >
+
+                <button type="submit">
+                    Add Expense
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- Set Budget -->
+
+    <section class="form-section">
+
+        <h2>Monthly Budget</h2>
+
+        <form id="budgetForm">
+
+            <div class="form-grid">
+
+                <input
+                    type="number"
+                    id="incomeInput"
+                    placeholder="Monthly Income ₹"
+                    min="1"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="savingsInput"
+                    placeholder="Savings Goal ₹"
+                    min="0"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="limitInput"
+                    placeholder="Spending Limit ₹"
+                    min="0"
+                    required
+                >
+
+                <button type="submit">
+                    Update Budget
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    <!-- Expenses -->
+
+    <section class="expenses">
+
+        <h2>Recent Expenses</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <th>Category</th>
+
+                    <th>Description</th>
+
+                    <th>Amount</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="expenseTable">
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <footer>
+
+        BudgetGuard · DevOps Demo Application
+
+    </footer>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+</body>
+
+</html>
